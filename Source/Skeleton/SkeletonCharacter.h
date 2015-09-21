@@ -36,6 +36,10 @@ public:
 	UPROPERTY( EditAnywhere, Category = Movement )
 	class USimpleMovementComponent* MovementComponent;
 
+	// ref to current actor
+	UPROPERTY()
+	class ACreatureActor* CurrentActor;
+
 	// A collection which contains all of the possible skeleton animations.  Should be a blueprint with all of this data.
 	// I think that I can just use this to represent the Character as the Character will ALWAYS be playing an animation
 	// So I should be able to call GetACtiveActor to get the correct actor at all times

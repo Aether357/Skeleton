@@ -10,13 +10,19 @@ ACollisionCreatureActor::ACollisionCreatureActor( const FObjectInitializer& Obje
 	: Super( ObjectInitializer )
 {
 	CollisionComponent = ObjectInitializer.CreateDefaultSubobject<UCapsuleComponent>( this, "CollisionComponent" );
-
-	CollisionComponent->AttachParent = RootComponent;
-
+	RootComponent = CollisionComponent;
+	PrimaryActorTick.bCanEverTick = true;
 }
 
 // Accessor for the collision component, should never need this in blueprints
 UCapsuleComponent* ACollisionCreatureActor::GetCollisionComponent()
 {
 	return CollisionComponent;
+}
+void ACollisionCreatureActor::Tick( float DeltaSeconds )
+{
+	Super::Tick( DeltaSeconds );
+
+	// Update the creature_mesh with the location of the collision component
+	creature_mesh->SetRelativeLocation( CollisionComponent->RelativeLocation );
 }

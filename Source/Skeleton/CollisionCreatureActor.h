@@ -22,7 +22,10 @@ public:
 
 	// Accessor for the collision component, should never need this in blueprints
 	UCapsuleComponent* GetCollisionComponent();
-	
+
+	// Called every frame
+	virtual void Tick( float DeltaSeconds ) override;
+
 public:
 
 	UPROPERTY( VisibleAnywhere, Category = Collision )
